@@ -1,0 +1,12 @@
+
+rule hello_world : demo {
+	meta:
+		author = "Stephen Vickers"
+		id = 1234
+		is_live = false
+	strings:
+		$s1 = "Hello, World!" ascii
+	condition:
+		all of them
+}
+

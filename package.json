@@ -1,0 +1,14 @@
+{
+    "name": "yaraka",
+    "version": "1.0.0",
+    "description": "Real-time email scanning with YARA",
+    "main": "yaraka-smtp.js",
+    "dependencies": {
+        "Haraka": "2.x",
+        "node-gyp": "3.x",
+        "os-service": "*",
+        "yara": "*"
+    },
+    "author": "NoSpacehips Ltd <hello@nospaceships.com>",
+    "license": "MIT"
+}

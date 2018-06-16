@@ -1,0 +1,17 @@
+/deps
+/dist
+/config/dhparams.pem
+/config/loglevel
+/config/plugins
+/config/rules.yara
+/config/smtp.ini
+/config/tls.ini
+/config/yaraka-smtp.json
+/config/yaraka-smtp.pem
+/node
+/node_modules
+/package-lock.json
+/queue
+/tmp
+*.swp
+TODO.md

@@ -8,7 +8,7 @@ using YARA rules contained within one or more configured files.
 Yaraka is delivered as an open-source GitHub hosted code repository.  Included
 is a Makefile which be used to build an RPM package which in turn can be used
 to install it on one or more hosts.  Yaraka is designed to be run in
-production, to scan all emails sent and received by an organization.
+production, to scan all emails received by an organization.
 
 [NoSpaceships][nospaceships] has released this project under the terms of the
 MIT license.  We intend to continue and enhance this project with a several
@@ -18,6 +18,9 @@ communication.
 If you have any issues or feedback, or would like to discuss any requirements
 you may have, please [contact us][contact-us], as it will help us shape this
 project into a useful tool.
+
+The [yaraka blog][yaraka-blog] post on the NoSpaceships website provides an
+example of how to deploy and integrate yaraka with O365.
 
 This project is designed to be used in a production environment.
 [NoSpaceships][nospaceships] provides free support on a best-effort basis for
@@ -237,3 +240,4 @@ SOFTWARE.
 [node-yara]: https://www.npmjs.com/package/yara
 [nospaceships]: https://nospaceships.com
 [yara-manuals]: http://yara.readthedocs.io
+[yaraka-blog]: https://www.nospaceships.com/2018/06/16/real-time-email-scanning-with-yara.html

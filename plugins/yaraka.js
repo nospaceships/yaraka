@@ -2,20 +2,15 @@
 // Copyright 2018 NoSpaceships Ltd
 
 var Logger = require("Haraka/logger")
-var Yara = require("yara")
+var Yaraka = require("../lib/yaraka")
 
 var config = require("../config/yaraka-smtp.json")
 
-var scanner = Yara.createScanner()
+var scanner = Yaraka.createScanner()
 
-scanner.configure({rules: config.rules}, function(error, warnings) {
+scanner.configure(config.rules, function(error, warnings) {
 	if (error) {
-		if (error instanceof Yara.CompileRulesError) {
-			throw new Error("Yara scanner.configure() failed: " + error.message
-					+ ": " + JSON.stringify(error.errors))
-		} else {
-			throw new Error("Yara scanner.configure() failed: " + error.message)
-		}
+		throw new Error("Yaraka scanner.configure() failed: " + error.message)
 	}
 })
 
@@ -73,13 +68,13 @@ exports.scan = function(next, connection, params) {
 
 		function scanOne(index) {
 			if (index < scan.requests.length) {
-				scanner.scan(scan.requests[index], function(error, result) {
+				scanner.scan(scan.requests[index], function(error, rules) {
 					if (error) {
 						connection.logalert("scanner.scan() failed: " + error.message)
 						return next(DENYSOFT)
 					} else {
-						result.rules.forEach(function(rule) {
-							scan.result.rules[rule.id]++
+						rules.forEach(function(rule) {
+							scan.result.rules[rule]++
 						})
 						scanOne(index + 1)
 					}

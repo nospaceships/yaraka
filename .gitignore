@@ -6,6 +6,8 @@
 /config/rules.yara
 /config/smtp.ini
 /config/tls.ini
+/config/yaraka-http.json
+/config/yaraka-http.pem
 /config/yaraka-smtp.json
 /config/yaraka-smtp.pem
 /node

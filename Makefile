@@ -12,6 +12,8 @@ configs:
 	cp config/plugins.default config/plugins
 	cp config/rules.yara.default config/rules.yara
 	cp config/tls.ini.default config/tls.ini
+	cp config/yaraka-http.json.default config/yaraka-http.json
+	cp config/yaraka-http.pem.default config/yaraka-http.pem
 	cp config/yaraka-smtp.json.default config/yaraka-smtp.json
 	cp config/yaraka-smtp.pem.default config/yaraka-smtp.pem
 	echo "port=1125" > config/smtp.ini
@@ -31,21 +33,21 @@ deps_npm:
 .PHONY: rpm
 rpm:
 	-rm -rf dist/$(VERSION)/rpm
-	mkdir -p dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)
-	mkdir -p dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)/config
-	mkdir -p dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)/queue
+	mkdir -p dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)
+	mkdir -p dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)/config
+	mkdir -p dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)/queue
 	mkdir dist/$(VERSION)/rpm/SPECS
 	mkdir dist/$(VERSION)/rpm/BUILD
 	mkdir dist/$(VERSION)/rpm/RPMS
 	mkdir dist/$(VERSION)/rpm/SRPMS
-	cp -r yaraka-smtp.js node node_modules plugins dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)
-	echo {\"version\": \"$(VERSION)\"} > dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)/config/app.json
-	cp config/*.default dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)/config
-	cd dist/$(VERSION)/rpm/SOURCES && tar -czvf yaraka-smtp-$(VERSION).tar.gz yaraka-smtp-$(VERSION)
-	rm -rf dist/$(VERSION)/rpm/SOURCES/yaraka-smtp-$(VERSION)
-	echo "Version: $(VERSION)" > dist/$(VERSION)/rpm/SPECS/yaraka-smtp.spec
-	cat rpm/yaraka-smtp.spec >> dist/$(VERSION)/rpm/SPECS/yaraka-smtp.spec
-	cd dist/$(VERSION)/rpm && rpmbuild -ba --define "_topdir $(BASE)/dist/$(VERSION)/rpm" SPECS/yaraka-smtp.spec
+	cp -r yaraka-http.js yaraka-scan.js yaraka-smtp.js node node_modules plugins dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)
+	echo {\"version\": \"$(VERSION)\"} > dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)/config/app.json
+	cp config/*.default dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)/config
+	cd dist/$(VERSION)/rpm/SOURCES && tar -czvf yaraka-$(VERSION).tar.gz yaraka-$(VERSION)
+	rm -rf dist/$(VERSION)/rpm/SOURCES/yaraka-$(VERSION)
+	echo "Version: $(VERSION)" > dist/$(VERSION)/rpm/SPECS/yaraka.spec
+	cat rpm/yaraka.spec >> dist/$(VERSION)/rpm/SPECS/yaraka.spec
+	cd dist/$(VERSION)/rpm && rpmbuild -ba --define "_topdir $(BASE)/dist/$(VERSION)/rpm" SPECS/yaraka.spec
 	cp dist/$(VERSION)/rpm/RPMS/x86_64/* dist/$(VERSION)
 	cp dist/$(VERSION)/rpm/SRPMS/* dist/$(VERSION)
 	rm -rf dist/$(VERSION)/rpm

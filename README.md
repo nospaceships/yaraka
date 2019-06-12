@@ -11,9 +11,7 @@ to install it on one or more hosts.  Yaraka is designed to be run in
 production, to scan all emails received by an organization.
 
 [NoSpaceships][nospaceships] has released this project under the terms of the
-MIT license.  We intend to continue and enhance this project with a several
-planned features - which we would be happy to share via ad-hoc private
-communication.
+MIT license.
 
 If you have any issues or feedback, or would like to discuss any requirements
 you may have, please [contact us][contact-us], as it will help us shape this
